@@ -19,9 +19,9 @@ namespace TaskManager.Application.Features.Todos.Handlers.Queries
 
         public async Task<TodoDto> Handle(GetTodoDetailRequest request, CancellationToken cancellationToken)
         {
-            var todo = await _todoRepository.Get(request.Id);
+            var todos = await _todoRepository.Get(request.Id);
 
-            return _mapper.Map<TodoDto>(todo);
+            return _mapper.Map<TodoDto>(todos);
         }
     }
 }

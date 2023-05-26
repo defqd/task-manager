@@ -17,9 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Features\Projects\Handlers\Commands\" />
-    <Folder Include="Features\Projects\Handlers\Queries\" />
     <Folder Include="Features\Projects\Requests\Commands\" />
-    <Folder Include="Features\Projects\Requests\Queries\" />
     <Folder Include="Features\Todos\Handlers\Commands\" />
     <Folder Include="Features\Todos\Requests\Commands\" />
   </ItemGroup>
