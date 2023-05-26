@@ -7,7 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TaskManager.Domain\TaskManager.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\TodoList\Handlers\" />
+    <Folder Include="Features\TodoList\Requests\" />
+    <Folder Include="Features\Todo\Handlers\" />
+    <Folder Include="Features\Todo\Requests\" />
   </ItemGroup>
 
 </Project>
