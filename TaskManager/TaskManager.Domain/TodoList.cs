@@ -2,7 +2,7 @@
 
 namespace TaskManager.Domain
 {
-    public class List : BaseEntity
+    public class TodoList : BaseEntity
     {
         public string Name { get; set; }
         public int TodoId { get; set; }
