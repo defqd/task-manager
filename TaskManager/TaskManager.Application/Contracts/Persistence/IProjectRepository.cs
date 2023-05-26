@@ -2,7 +2,7 @@
 
 namespace TaskManager.Application.Contracts.Persistence
 {
-    public interface ITodoListRepository : IGenericRepository<TodoList>
+    public interface IProjectRepository : IGenericRepository<Project>
     {
     }
 }
