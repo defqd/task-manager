@@ -1,11 +1,11 @@
 ﻿using TaskManager.Application.DTOs.Common;
 
-namespace TaskManager.Application.DTOs.Todo
+namespace TaskManager.Application.DTOs.Todos
 {
-    public class CreateTodoDto : BaseEntityDto
+    public class UpdateTodoDto : BaseEntityDto
     {
         public string Name { get; set; }
-        public bool Status { get; set; } = false;
+        public bool Status { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }
