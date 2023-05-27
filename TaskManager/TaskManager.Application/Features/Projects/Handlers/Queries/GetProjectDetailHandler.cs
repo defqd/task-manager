@@ -18,7 +18,7 @@ namespace TaskManager.Application.Features.Projects.Handlers.Queries
 
         public async Task<ProjectDto> Handle(GetProjectDetailRequest request, CancellationToken cancellationToken)
         {
-            var project = await _projectRepository.Get(request.Id);
+            var project = await _projectRepository.GetAsync(request.Id);
 
             return _mapper.Map<ProjectDto>(project);
         }

@@ -29,7 +29,7 @@ namespace TaskManager.Application.Features.Todos.Handlers.Commands
 
             var todo = _mapper.Map<Todo>(request.CreateTodoDto);
 
-            await _todoRepository.Add(todo);
+            await _todoRepository.AddAsync(todo);
 
             return todo.Id;
         }

@@ -26,11 +26,11 @@ namespace TaskManager.Application.Features.Projects.Handlers.Commands
             if (validationResult.IsValid == false)
                 throw new ValidationException(validationResult.Errors);
 
-            var project = await _projectRepositor.Get(request.UpdateProjectDto.Id);
+            var project = await _projectRepositor.GetAsync(request.UpdateProjectDto.Id);
 
             _mapper.Map(request.UpdateProjectDto, project);
 
-            await _projectRepositor.Update(project);
+            await _projectRepositor.UpdateAsync(project);
 
             return Unit.Value;
         }

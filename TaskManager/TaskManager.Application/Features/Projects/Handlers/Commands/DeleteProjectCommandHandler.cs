@@ -18,9 +18,9 @@ namespace TaskManager.Application.Features.Projects.Handlers.Commands
 
         public async Task<Unit> Handle(DeleteProjectCommand request, CancellationToken cancellationToken)
         {
-            var project = await _projectRepository.Get(request.Id);
+            var project = await _projectRepository.GetAsync(request.Id);
 
-            await _projectRepository.Delete(project);
+            await _projectRepository.DeleteAsync(project);
 
             return Unit.Value;
         }

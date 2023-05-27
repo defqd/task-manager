@@ -18,9 +18,9 @@ namespace TaskManager.Application.Features.Todos.Handlers.Commands
 
         public async Task<Unit> Handle(DeleteTodoCommand request, CancellationToken cancellationToken)
         {
-            var todo = await _todoRepository.Get(request.Id);
+            var todo = await _todoRepository.GetAsync(request.Id);
 
-            await _todoRepository.Delete(todo);
+            await _todoRepository.DeleteAsync(todo);
 
             return Unit.Value;
         }

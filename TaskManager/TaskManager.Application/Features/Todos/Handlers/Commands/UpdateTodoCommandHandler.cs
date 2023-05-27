@@ -26,11 +26,11 @@ namespace TaskManager.Application.Features.Todos.Handlers.Commands
             if (validationResult.IsValid == false)
                 throw new ValidationException(validationResult.Errors);
 
-            var todo = await _todoRepository.Get(request.UpdateTodoDto.Id);
+            var todo = await _todoRepository.GetAsync(request.UpdateTodoDto.Id);
 
             _mapper.Map(request.UpdateTodoDto, todo);
 
-            await _todoRepository.Update(todo);
+            await _todoRepository.UpdateAsync(todo);
 
             return Unit.Value;
         }

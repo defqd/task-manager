@@ -30,7 +30,7 @@ namespace TaskManager.Application.Features.Projects.Handlers.Commands
 
             var todo = _mapper.Map<Project>(request.CreateProjectDto);
 
-            await _projectRepository.Add(todo);
+            await _projectRepository.AddAsync(todo);
 
             return todo.Id;
         }
