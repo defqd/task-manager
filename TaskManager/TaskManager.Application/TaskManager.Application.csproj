@@ -15,9 +15,4 @@
     <ProjectReference Include="..\TaskManager.Domain\TaskManager.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Projects\Handlers\Commands\" />
-    <Folder Include="Features\Projects\Requests\Commands\" />
-  </ItemGroup>
-
 </Project>
