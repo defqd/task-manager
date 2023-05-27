@@ -1,4 +1,5 @@
-﻿using TaskManager.Application.Contracts.Persistence;
+﻿using Microsoft.EntityFrameworkCore;
+using TaskManager.Application.Contracts.Persistence;
 using TaskManager.Domain;
 
 namespace TaskManager.Persistence.Repositories
@@ -10,6 +11,24 @@ namespace TaskManager.Persistence.Repositories
         public ProjectRepository(TaskManagerDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        public async Task<Project> GetProjectWithDetails(int id)
+        {
+            var project = await _dbContext.Projects
+                .Include(q => q.Todo)
+                .FirstOrDefaultAsync(q => q.Id == id);
+
+            return project;
+        }
+
+        public async Task<List<Project>> GetProjectWithDetails()
+        {
+            var projects = await _dbContext.Projects
+                .Include(q => q.Todo)
+                .ToListAsync();
+
+            return projects;
         }
     }
 }

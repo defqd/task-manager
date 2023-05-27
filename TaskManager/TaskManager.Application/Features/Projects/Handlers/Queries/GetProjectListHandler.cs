@@ -19,7 +19,7 @@ namespace TaskManager.Application.Features.Projects.Handlers.Queries
 
         public async Task<List<ProjectDto>> Handle(GetProjectListRequest request, CancellationToken cancellationToken)
         {
-            var projects = await _projectRepository.GetAll();
+            var projects = await _projectRepository.GetProjectWithDetails();
 
             return _mapper.Map<List<ProjectDto>>(projects);
         }
