@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Application", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Persistence", "TaskManager.Persistence\TaskManager.Persistence.csproj", "{EAD8F9EC-13C1-4A39-860B-9A13E766B386}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.API", "TaskManager.API\TaskManager.API.csproj", "{5F9FC1BD-CD0E-49B2-9EC9-48AC0D475A02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{EAD8F9EC-13C1-4A39-860B-9A13E766B386}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAD8F9EC-13C1-4A39-860B-9A13E766B386}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAD8F9EC-13C1-4A39-860B-9A13E766B386}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F9FC1BD-CD0E-49B2-9EC9-48AC0D475A02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F9FC1BD-CD0E-49B2-9EC9-48AC0D475A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F9FC1BD-CD0E-49B2-9EC9-48AC0D475A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F9FC1BD-CD0E-49B2-9EC9-48AC0D475A02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{56B97831-5216-4C40-87E3-8E159F021422} = {683FB984-64EC-4705-A9EC-2AAA73CEC4CB}
 		{723E1493-928F-4A89-A397-F4E593C0B8E2} = {683FB984-64EC-4705-A9EC-2AAA73CEC4CB}
 		{EAD8F9EC-13C1-4A39-860B-9A13E766B386} = {C1923833-4008-4795-8421-EEC8365B3A0E}
+		{5F9FC1BD-CD0E-49B2-9EC9-48AC0D475A02} = {14B98AD2-D758-409D-8A28-76589E4798D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9AE81E90-34F6-4180-B600-C456CC553C96}

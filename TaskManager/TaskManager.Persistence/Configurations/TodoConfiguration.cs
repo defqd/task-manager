@@ -14,16 +14,16 @@ namespace TaskManager.Persistence.Configurations
             {
                 Id = 1,
                 Name = "First",
-                StartDate = new DateTime(2023, 27, 5),
-                EndDate = new DateTime(2023, 28, 5),
+                StartDate = new DateTime(2023, 5, 27),
+                EndDate = new DateTime(2023, 5, 28),
                 Status = false
             },
             new Todo
             {
                 Id = 2,
                 Name = "Second",
-                StartDate = new DateTime(2023, 27, 5),
-                EndDate = new DateTime(2023, 28, 5),
+                StartDate = new DateTime(2023, 5, 27),
+                EndDate = new DateTime(2023, 5, 28),
                 Status = false
             }
             );

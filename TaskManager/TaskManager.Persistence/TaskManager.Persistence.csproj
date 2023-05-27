@@ -15,10 +15,5 @@
   <ItemGroup>
     <ProjectReference Include="..\TaskManager.Application\TaskManager.Application.csproj" />
   </ItemGroup>
-  
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
 
 </Project>
