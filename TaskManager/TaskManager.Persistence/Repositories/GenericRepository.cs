@@ -12,7 +12,7 @@ namespace TaskManager.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<T> Add(T entity)
+        public async Task<T> AddAsync(T entity)
         {
             await _dbContext.AddAsync(entity);
 
@@ -21,14 +21,14 @@ namespace TaskManager.Persistence.Repositories
             return entity;
         }
 
-        public async Task Delete(T entity)
+        public async Task DeleteAsync(T entity)
         {
             _dbContext.Set<T>().Remove(entity);
 
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<T> Get(int id)
+        public async Task<T> GetAsync(int id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }
@@ -38,9 +38,11 @@ namespace TaskManager.Persistence.Repositories
             return await _dbContext.Set<T>().ToListAsync();
         }
 
-        public async Task Update(T entity)
+        public async Task UpdateAsync(T entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
+
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
