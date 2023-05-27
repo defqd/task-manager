@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
-using TaskManager.Domain;
 using TaskManager.Application.DTOs.Projects;
-using TaskManager.Application.DTOs.Todos;
+using TaskManager.Domain;
 
 namespace TaskManager.Application.Profiles
 {
-    public class MappingProfiles : Profile
+    public class ProjectProfile : Profile
     {
-        public MappingProfiles()
+        public ProjectProfile()
         {
-            CreateMap<Todo, TodoDto>().ReverseMap();
             CreateMap<Project, ProjectDto>().ReverseMap();
+            CreateMap<CreateProjectDto, Project>();
+            CreateMap<UpdateProjectDto, Project>();
         }
     }
 }
