@@ -1,8 +1,6 @@
-﻿using TaskManager.Application.DTOs.Common;
-
-namespace TaskManager.Application.DTOs.Todos
+﻿namespace TaskManager.Application.DTOs.Todos
 {
-    public class CreateTodoDto : BaseEntityDto
+    public class CreateTodoDto
     {
         public string Name { get; set; }
         public bool Status { get; set; } = false;
