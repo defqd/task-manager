@@ -33,7 +33,7 @@ namespace TaskManager.Persistence.Repositories
             return await _dbContext.Set<T>().FindAsync(id);
         }
 
-        public async Task<IReadOnlyList<T>> GetAll()
+        public async Task<IReadOnlyList<T>> GetAllAsync()
         {
             return await _dbContext.Set<T>().ToListAsync();
         }
