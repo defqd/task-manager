@@ -65,6 +65,20 @@ namespace TaskManager.API.Controllers
             return Ok(response);
         }
 
+        // PUT api/<TodoController>/UpdateStatus
+        [HttpPut]
+        [Route("UpdateStatus")]
+        public async Task<ActionResult<BaseCommandResponse>> UpdateStatus([FromBody] ChangeStatusTodoDto changeStatusTodoDto)
+        {
+            var command = new ChangeStatusTodoCommand { ChangeStatusTodoDto = changeStatusTodoDto };
+            var response = await _mediator.Send(command);
+
+            if (response.Success == false)
+                return NotFound(response);
+
+            return Ok(response);
+        }
+
         // DELETE api/<TodoController>/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<BaseCommandResponse>> Delete(int id)
