@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Domain", "TaskM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Application", "TaskManager.Application\TaskManager.Application.csproj", "{723E1493-928F-4A89-A397-F4E593C0B8E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Persistence", "TaskManager.Persistence\TaskManager.Persistence.csproj", "{EAD8F9EC-13C1-4A39-860B-9A13E766B386}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Persistence", "TaskManager.Persistence\TaskManager.Persistence.csproj", "{EAD8F9EC-13C1-4A39-860B-9A13E766B386}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.API", "TaskManager.API\TaskManager.API.csproj", "{5F9FC1BD-CD0E-49B2-9EC9-48AC0D475A02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.API", "TaskManager.API\TaskManager.API.csproj", "{5F9FC1BD-CD0E-49B2-9EC9-48AC0D475A02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Application.Unit.Tests", "TaskManager.Application.Unit.Tests\TaskManager.Application.Unit.Tests.csproj", "{1205581C-A260-492B-86B9-A5F3CDB9B6B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{5F9FC1BD-CD0E-49B2-9EC9-48AC0D475A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F9FC1BD-CD0E-49B2-9EC9-48AC0D475A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F9FC1BD-CD0E-49B2-9EC9-48AC0D475A02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1205581C-A260-492B-86B9-A5F3CDB9B6B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1205581C-A260-492B-86B9-A5F3CDB9B6B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1205581C-A260-492B-86B9-A5F3CDB9B6B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1205581C-A260-492B-86B9-A5F3CDB9B6B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{723E1493-928F-4A89-A397-F4E593C0B8E2} = {683FB984-64EC-4705-A9EC-2AAA73CEC4CB}
 		{EAD8F9EC-13C1-4A39-860B-9A13E766B386} = {C1923833-4008-4795-8421-EEC8365B3A0E}
 		{5F9FC1BD-CD0E-49B2-9EC9-48AC0D475A02} = {14B98AD2-D758-409D-8A28-76589E4798D1}
+		{1205581C-A260-492B-86B9-A5F3CDB9B6B7} = {05A300E9-638C-4A92-80D5-2677DDB39978}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9AE81E90-34F6-4180-B600-C456CC553C96}
