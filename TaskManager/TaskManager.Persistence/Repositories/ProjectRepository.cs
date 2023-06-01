@@ -22,7 +22,7 @@ namespace TaskManager.Persistence.Repositories
             return project;
         }
 
-        public async Task<List<Project>> GetProjectWithDetails()
+        public async Task<List<Project>> GetProjectsWithDetails()
         {
             var projects = await _dbContext.Projects
                 .Include(q => q.Todo)
