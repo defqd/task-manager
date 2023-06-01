@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TaskManager.Application.DTOs.Projects;
 using TaskManager.Application.Features.Projects.Requests.Commands;
 using TaskManager.Application.Features.Projects.Requests.Queries;
+using TaskManager.Application.Responses;
 using TaskManager.Domain;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -40,32 +41,41 @@ namespace TaskManager.API.Controllers
 
         // POST api/<ProjectController>
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] CreateProjectDto createProjectDto)
+        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateProjectDto createProjectDto)
         {
             var command = new CreateProjectCommand { CreateProjectDto = createProjectDto };
             var response = await _mediator.Send(command);
+
+            if (response.Success == false)
+                return NotFound(response);
 
             return Ok(response);
         }
 
         // PUT api/<ProjectController>/5
-        [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] UpdateProjectDto updateProjectDto)
+        [HttpPut]
+        public async Task<ActionResult<BaseCommandResponse>> Put([FromBody] UpdateProjectDto updateProjectDto)
         {
             var command = new UpdateProjectCommand { UpdateProjectDto = updateProjectDto };
-            await _mediator.Send(command);
+            var response = await _mediator.Send(command);
 
-            return NoContent();
+            if (response.Success == false)
+                return NotFound(response);
+
+            return Ok(response);
         }
 
         // DELETE api/<ProjectController>/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult<BaseCommandResponse>> Delete(int id)
         {
             var command = new DeleteProjectCommand { Id = id };
-            await _mediator.Send(command);
+            var response = await _mediator.Send(command);
 
-            return NoContent();
+            if (response.Success == false)
+                return NotFound(response);
+
+            return Ok(response);
         }
     }
 }

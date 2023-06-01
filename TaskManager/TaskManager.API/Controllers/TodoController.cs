@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TaskManager.Application.DTOs.Todos;
 using TaskManager.Application.Features.Todos.Requests.Commands;
 using TaskManager.Application.Features.Todos.Requests.Queries;
+using TaskManager.Application.Responses;
 using TaskManager.Domain;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -40,32 +41,41 @@ namespace TaskManager.API.Controllers
 
         // POST api/<TodoController>
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] CreateTodoDto createTodoDto)
+        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateTodoDto createTodoDto)
         {
             var command = new CreateTodoCommand { CreateTodoDto = createTodoDto };
             var response = await _mediator.Send(command);
+
+            if (response.Success == false)
+                return NotFound(response);
 
             return Ok(response);
         }
 
         // PUT api/<TodoController>/5
-        [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] UpdateTodoDto updateTodoDto)
+        [HttpPut]
+        public async Task<ActionResult<BaseCommandResponse>> Put([FromBody] UpdateTodoDto updateTodoDto)
         {
             var command = new UpdateTodoCommand { UpdateTodoDto = updateTodoDto };
-            await _mediator.Send(command);
+            var response = await _mediator.Send(command);
 
-            return NoContent();
+            if (response.Success == false)
+                return NotFound(response);
+
+            return Ok(response);
         }
 
         // DELETE api/<TodoController>/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult<BaseCommandResponse>> Delete(int id)
         {
             var command = new DeleteTodoCommand { Id = id };
-            await _mediator.Send(command);
+            var response = await _mediator.Send(command);
 
-            return NoContent();
+            if (response.Success == false)
+                return NotFound(response);
+
+            return Ok(response);
         }
     }
 }

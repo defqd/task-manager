@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using MediatR;
-using FluentValidation;
 using TaskManager.Application.Contracts.Persistence;
 using TaskManager.Application.DTOs.Projects.Validators;
 using TaskManager.Application.Features.Projects.Requests.Commands;
+using TaskManager.Application.Responses;
 
 namespace TaskManager.Application.Features.Projects.Handlers.Commands
 {
-    public class UpdateProjectCommandHandler : IRequestHandler<UpdateProjectCommand, Unit>
+    public class UpdateProjectCommandHandler : IRequestHandler<UpdateProjectCommand, BaseCommandResponse>
     {
         private readonly IProjectRepository _projectRepositor;
         private readonly IMapper _mapper;
@@ -18,21 +18,29 @@ namespace TaskManager.Application.Features.Projects.Handlers.Commands
             _mapper = mapper;
         }
 
-        public async Task<Unit> Handle(UpdateProjectCommand request, CancellationToken cancellationToken)
+        public async Task<BaseCommandResponse> Handle(UpdateProjectCommand request, CancellationToken cancellationToken)
         {
+            var response = new BaseCommandResponse();
+
             var validator = new UpdateProjectDtoValidator();
             var validationResult = await validator.ValidateAsync(request.UpdateProjectDto);
 
             if (validationResult.IsValid == false)
-                throw new ValidationException(validationResult.Errors);
+            {
+                response.Success = false;
+                response.Message = "Project update failed.";
+                response.Errors = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
+                return response;
+            }
 
             var project = await _projectRepositor.GetAsync(request.UpdateProjectDto.Id);
 
             _mapper.Map(request.UpdateProjectDto, project);
-
             await _projectRepositor.UpdateAsync(project);
 
-            return Unit.Value;
+            response.Message = "Project updated successfully.";
+
+            return response;
         }
     }
 }

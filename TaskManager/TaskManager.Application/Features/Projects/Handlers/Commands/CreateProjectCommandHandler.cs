@@ -1,15 +1,14 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using MediatR;
 using TaskManager.Application.Contracts.Persistence;
 using TaskManager.Application.DTOs.Projects.Validators;
-using TaskManager.Application.DTOs.Todos.Validators;
 using TaskManager.Application.Features.Projects.Requests.Commands;
+using TaskManager.Application.Responses;
 using TaskManager.Domain;
 
 namespace TaskManager.Application.Features.Projects.Handlers.Commands
 {
-    public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand, int>
+    public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand, BaseCommandResponse>
     {
         private readonly IProjectRepository _projectRepository;
         private readonly IMapper _mapper;
@@ -20,19 +19,28 @@ namespace TaskManager.Application.Features.Projects.Handlers.Commands
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
+        public async Task<BaseCommandResponse> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
+            var response = new BaseCommandResponse();
+
             var validator = new CreateProjectDtoValidator();
             var validationResult = await validator.ValidateAsync(request.CreateProjectDto);
 
             if (validationResult.IsValid == false)
-                throw new ValidationException(validationResult.Errors);
+            {
+                response.Success = false;
+                response.Message = "Project creation failed.";
+                response.Errors = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
+                return response;
+            }
 
-            var todo = _mapper.Map<Project>(request.CreateProjectDto);
+            var project = _mapper.Map<Project>(request.CreateProjectDto);
+            await _projectRepository.AddAsync(project);
 
-            await _projectRepository.AddAsync(todo);
+            response.Id = project.Id;
+            response.Message = "Project creation successful.";
 
-            return todo.Id;
+            return response;
         }
     }
 }
