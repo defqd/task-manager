@@ -31,7 +31,8 @@ namespace TaskManager.Application.Unit.Tests.Todos.Commands
                 Name = "CreateTest",
                 StartDate = new DateTime(2023, 5, 27),
                 EndDate = new DateTime(2023, 5, 28),
-                Status = false
+                Status = false,
+                ProjectId = 1
             };
         }
 
@@ -54,6 +55,24 @@ namespace TaskManager.Application.Unit.Tests.Todos.Commands
         public async Task InValid_Todo_Added()
         {
             _createTodoDto.Name = "";
+
+            var handler = new CreateTodoCommandHandler(_mockRepo.Object, _mapper);
+
+            var result = await handler.Handle(new CreateTodoCommand { CreateTodoDto = _createTodoDto }, CancellationToken.None);
+
+            var todos = await _mockRepo.Object.GetAllAsync();
+
+            result.ShouldBeOfType<BaseCommandResponse>();
+            result.Success.ShouldBeFalse();
+            result.Errors.Count.ShouldBeGreaterThan(0);
+
+            todos.Count.ShouldBe(2);
+        }
+
+        [Fact]
+        public async Task InValid_ProjectId_Todo_Added()
+        {
+            _createTodoDto.ProjectId = -1;
 
             var handler = new CreateTodoCommandHandler(_mockRepo.Object, _mapper);
 
