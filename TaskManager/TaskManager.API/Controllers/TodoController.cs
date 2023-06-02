@@ -23,7 +23,7 @@ namespace TaskManager.API.Controllers
 
         // GET: api/<TodoController>
         [HttpGet]
-        public async Task<ActionResult<List<Todo>>> Get()
+        public async Task<ActionResult<List<TodoDto>>> Get()
         {
             var todos = await _mediator.Send(new GetTodoListRequest());
 
@@ -32,7 +32,7 @@ namespace TaskManager.API.Controllers
 
         // GET api/<TodoController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Todo>> Get(int id)
+        public async Task<ActionResult<TodoDto>> Get(int id)
         {
             var todo = await _mediator.Send(new GetTodoDetailRequest {  Id = id });
 

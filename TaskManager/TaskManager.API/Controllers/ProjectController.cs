@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.Application.DTOs.Projects;
+using TaskManager.Application.DTOs.Todos;
 using TaskManager.Application.Features.Projects.Requests.Commands;
 using TaskManager.Application.Features.Projects.Requests.Queries;
 using TaskManager.Application.Responses;
@@ -23,7 +24,7 @@ namespace TaskManager.API.Controllers
 
         // GET: api/<ProjectController>
         [HttpGet]
-        public async Task<ActionResult<List<Project>>> Get()
+        public async Task<ActionResult<List<ProjectDto>>> Get()
         {
             var todos = await _mediator.Send(new GetProjectListRequest());
 
@@ -32,7 +33,7 @@ namespace TaskManager.API.Controllers
 
         // GET api/<ProjectController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Todo>> Get(int id)
+        public async Task<ActionResult<ProjectDto>> Get(int id)
         {
             var todo = await _mediator.Send(new GetProjectDetailRequest { Id = id });
 
