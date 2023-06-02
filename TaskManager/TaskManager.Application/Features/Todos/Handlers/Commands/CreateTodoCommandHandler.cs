@@ -23,7 +23,7 @@ namespace TaskManager.Application.Features.Todos.Handlers.Commands
         {
             var response = new BaseCommandResponse();
 
-            var validator = new CreateTodoDtoValidator();
+            var validator = new CreateTodoDtoValidator(_todoRepository);
             var validationResult = await validator.ValidateAsync(request.CreateTodoDto);
 
             if (validationResult.IsValid == false)
