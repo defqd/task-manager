@@ -33,7 +33,7 @@ namespace TaskManager.Application.Features.Projects.Handlers.Commands
                 return response;
             }
 
-            var project = await _projectRepositor.GetAsync(request.UpdateProjectDto.Id);
+            var project = await _projectRepositor.GetProjectWithDetails(request.UpdateProjectDto.Id);
 
             _mapper.Map(request.UpdateProjectDto, project);
             await _projectRepositor.UpdateAsync(project);

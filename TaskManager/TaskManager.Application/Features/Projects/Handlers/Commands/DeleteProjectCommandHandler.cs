@@ -21,7 +21,7 @@ namespace TaskManager.Application.Features.Projects.Handlers.Commands
         {
             var response = new BaseCommandResponse();
 
-            var project = await _projectRepository.GetAsync(request.Id);
+            var project = await _projectRepository.GetProjectWithDetails(request.Id);
 
             if(project is null)
             {
