@@ -8,11 +8,19 @@ namespace TaskManager.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Project> builder)
         {
-            builder.HasData( new Project
-            {
-                Id = 1,
-                Name = "Test"
-            });
+            builder.HasData
+            ( 
+                new Project
+                {
+                    Id = 1,
+                    Name = "FirstProject"
+                },
+                new Project
+                {
+                    Id = 2,
+                    Name = "SecondProject"
+                }
+            );
         }
     }
 }

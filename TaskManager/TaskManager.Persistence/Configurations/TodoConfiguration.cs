@@ -16,7 +16,8 @@ namespace TaskManager.Persistence.Configurations
                 Name = "First",
                 StartDate = new DateTime(2023, 5, 27),
                 EndDate = new DateTime(2023, 5, 28),
-                Status = false
+                Status = false,
+                ProjectId = 1
             },
             new Todo
             {
@@ -24,7 +25,17 @@ namespace TaskManager.Persistence.Configurations
                 Name = "Second",
                 StartDate = new DateTime(2023, 5, 27),
                 EndDate = new DateTime(2023, 5, 28),
-                Status = false
+                Status = false,
+                ProjectId = 1
+            },
+            new Todo
+            {
+                Id = 3,
+                Name = "Third",
+                StartDate = new DateTime(2023, 5, 27),
+                EndDate = new DateTime(2023, 5, 28),
+                Status = false,
+                ProjectId = 2
             }
             );
         }

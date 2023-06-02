@@ -40,6 +40,7 @@ namespace TaskManager.Persistence.Repositories
 
         public async Task UpdateAsync(T entity)
         {
+            _dbContext.Set<T>().Update(entity);
             _dbContext.Entry(entity).State = EntityState.Modified;
 
             await _dbContext.SaveChangesAsync();

@@ -16,7 +16,7 @@ namespace TaskManager.Persistence.Repositories
         public async Task<Project> GetProjectWithDetails(int id)
         {
             var project = await _dbContext.Projects
-                .Include(q => q.Todo)
+                .Include(q => q.Todos)
                 .FirstOrDefaultAsync(q => q.Id == id);
 
             return project;
@@ -25,7 +25,7 @@ namespace TaskManager.Persistence.Repositories
         public async Task<List<Project>> GetProjectsWithDetails()
         {
             var projects = await _dbContext.Projects
-                .Include(q => q.Todo)
+                .Include(q => q.Todos)
                 .ToListAsync();
 
             return projects;
