@@ -13,13 +13,15 @@ namespace TaskManager.Application.Unit.Tests.Todos.Commands
 {
     public class CreateTodoCommandHandlerTests
     {
-        private readonly Mock<ITodoRepository> _mockRepo;
+        private readonly Mock<ITodoRepository> _mockRepoTodo;
+        private readonly Mock<IProjectRepository> _mockRepoProject;
         private IMapper _mapper;
         private readonly CreateTodoDto _createTodoDto;
 
         public CreateTodoCommandHandlerTests()
         {
-            _mockRepo = MockTodoRepository.GetTodoRepository();
+            _mockRepoTodo = MockTodoRepository.GetTodoRepository();
+            _mockRepoProject = MockProjectRepository.GetProjectRepository();
 
             var mapperConfig = new MapperConfiguration(c => {
                 c.AddProfile<TodoProfile>();
@@ -39,11 +41,11 @@ namespace TaskManager.Application.Unit.Tests.Todos.Commands
         [Fact]
         public async Task Valid_Todo_Added()
         {
-            var handler = new CreateTodoCommandHandler(_mockRepo.Object, _mapper);
+            var handler = new CreateTodoCommandHandler(_mockRepoTodo.Object, _mapper, _mockRepoProject.Object);
 
             var result = await handler.Handle(new CreateTodoCommand { CreateTodoDto = _createTodoDto }, CancellationToken.None);
 
-            var todos = await _mockRepo.Object.GetAllAsync();
+            var todos = await _mockRepoTodo.Object.GetAllAsync();
 
             result.ShouldBeOfType<BaseCommandResponse>();
             result.Success.ShouldBeTrue();
@@ -56,11 +58,11 @@ namespace TaskManager.Application.Unit.Tests.Todos.Commands
         {
             _createTodoDto.Name = "";
 
-            var handler = new CreateTodoCommandHandler(_mockRepo.Object, _mapper);
+            var handler = new CreateTodoCommandHandler(_mockRepoTodo.Object, _mapper, _mockRepoProject.Object);
 
             var result = await handler.Handle(new CreateTodoCommand { CreateTodoDto = _createTodoDto }, CancellationToken.None);
 
-            var todos = await _mockRepo.Object.GetAllAsync();
+            var todos = await _mockRepoTodo.Object.GetAllAsync();
 
             result.ShouldBeOfType<BaseCommandResponse>();
             result.Success.ShouldBeFalse();
@@ -74,11 +76,11 @@ namespace TaskManager.Application.Unit.Tests.Todos.Commands
         {
             _createTodoDto.ProjectId = -1;
 
-            var handler = new CreateTodoCommandHandler(_mockRepo.Object, _mapper);
+            var handler = new CreateTodoCommandHandler(_mockRepoTodo.Object, _mapper, _mockRepoProject.Object);
 
             var result = await handler.Handle(new CreateTodoCommand { CreateTodoDto = _createTodoDto }, CancellationToken.None);
 
-            var todos = await _mockRepo.Object.GetAllAsync();
+            var todos = await _mockRepoTodo.Object.GetAllAsync();
 
             result.ShouldBeOfType<BaseCommandResponse>();
             result.Success.ShouldBeFalse();

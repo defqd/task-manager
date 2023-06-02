@@ -11,19 +11,21 @@ namespace TaskManager.Application.Features.Todos.Handlers.Commands
     public class CreateTodoCommandHandler : IRequestHandler<CreateTodoCommand, BaseCommandResponse>
     {
         private readonly ITodoRepository _todoRepository;
+        private readonly IProjectRepository _projectRepository;
         private readonly IMapper _mapper;
 
-        public CreateTodoCommandHandler(ITodoRepository todoRepository, IMapper mapper)
+        public CreateTodoCommandHandler(ITodoRepository todoRepository, IMapper mapper, IProjectRepository projectRepository)
         {
             _todoRepository = todoRepository;
             _mapper = mapper;
+            _projectRepository = projectRepository;
         }
 
         public async Task<BaseCommandResponse> Handle(CreateTodoCommand request, CancellationToken cancellationToken)
         {
             var response = new BaseCommandResponse();
 
-            var validator = new CreateTodoDtoValidator(_todoRepository);
+            var validator = new CreateTodoDtoValidator(_projectRepository);
             var validationResult = await validator.ValidateAsync(request.CreateTodoDto);
 
             if (validationResult.IsValid == false)

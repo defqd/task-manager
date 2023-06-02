@@ -5,18 +5,14 @@ namespace TaskManager.Application.DTOs.Todos.Validators
 {
     public class CreateTodoDtoValidator : AbstractValidator<CreateTodoDto>
     {
-        private ITodoRepository _todoRepository;
-        public CreateTodoDtoValidator(ITodoRepository todoRepository)
+        private IProjectRepository _projectRepository;
+        public CreateTodoDtoValidator(IProjectRepository projectRepository)
         {
-            _todoRepository = todoRepository;
+            _projectRepository = projectRepository;
 
             RuleFor(x => x.ProjectId)
                 .GreaterThan(0).WithMessage("{PropertyName} must be greater than {ComparisonValue}")
-                .MustAsync(async (id, token) =>
-                {
-                    var projectExists = await _todoRepository.ExistsAsync(id);
-                    return !projectExists;
-                }).WithMessage("{PropertyName} does not exist.");
+                .MustAsync(ProjectMustExist).WithMessage("{PropertyName} does not exist.");
 
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
@@ -28,6 +24,12 @@ namespace TaskManager.Application.DTOs.Todos.Validators
 
             RuleFor(x => x.EndDate)
                 .GreaterThan(x => x.StartDate).WithMessage("{PropertyName} must be after {ComparisonValue}");
+        }
+
+        private async Task<bool>ProjectMustExist(int id, CancellationToken cancellationToken)
+        {
+            var project = await _projectRepository.GetProjectWithDetails(id);
+            return project != null;
         }
     }
 }
