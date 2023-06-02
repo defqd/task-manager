@@ -45,5 +45,12 @@ namespace TaskManager.Persistence.Repositories
 
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<bool> ExistsAsync(int id)
+        {
+            var entity = await GetAsync(id);
+
+            return entity != null;
+        }
     }
 }
